@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTY;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTYService;
+import com.demo.JSONSETTERandGETTER.EmployeeSETGET;
+import com.demo.JSONSETTERandGETTER.EmployeeSETGETService;
 import com.demo.form.EmptyObject;
 import com.demo.modal.Roles;
 import com.demo.modal.User;
@@ -29,6 +31,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class SpringjsonprocessorApplication implements CommandLineRunner {
 	@Autowired
 	private EmployeeJSONPROPERTYService jsonpropertyService;
+	@Autowired
+	private EmployeeSETGETService employeeSETGETService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -108,7 +112,13 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		  System.out.println(jsonOut);
 		  EmployeeJSONPROPERTY objectProperty=jsonpropertyService.toObject(jsonOut);
 		  System.out.println(objectProperty);
-		
+		  EmployeeSETGET setget=new EmployeeSETGET();
+		  setget.setName("Shiva");
+		  setget.setDept("ECE");
+		String jsonOut1=employeeSETGETService.toJson(setget);
+		System.out.println(jsonOut1);
+		EmployeeSETGET setget2=employeeSETGETService.toObject(jsonOut1);
+		System.out.println(setget2);
 	}
 
 }

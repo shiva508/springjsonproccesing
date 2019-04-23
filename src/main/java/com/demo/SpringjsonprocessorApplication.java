@@ -20,6 +20,9 @@ import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
 import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
 import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTY;
 import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTYService;
+import com.demo.JSONIGNORETYPE.AddressIGNORETYPE;
+import com.demo.JSONIGNORETYPE.EmpIGNORETYPE;
+import com.demo.JSONIGNORETYPE.EmpIGNORETYPEService;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTY;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTYService;
 import com.demo.JSONSETTERandGETTER.EmployeeSETGET;
@@ -53,8 +56,11 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	 * @Autowired private EmployeeJSONIGNOREPROPERTYService
 	 * employeeJSONIGNOREPROPERTYService;
 	 */
+	/*
+	 * @Autowired private EmployeeIGNOREUNKNOWNService employeeIGNOREUNKNOWNService;
+	 */
 	@Autowired
-	private EmployeeIGNOREUNKNOWNService employeeIGNOREUNKNOWNService;
+	private EmpIGNORETYPEService empIGNORETYPEService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -172,14 +178,27 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * toObject=employeeJSONIGNOREPROPERTYService.toObject(toJson);
 		 * System.out.println(toObject);
 		 */
-		EmployeeIGNOREUNKNOWN ignoreunknown=new EmployeeIGNOREUNKNOWN();
-		ignoreunknown.setAddress("TMP");
-		ignoreunknown.setName("Shiva");
-		ignoreunknown.setDepot("ECE");
-		String toJson=employeeIGNOREUNKNOWNService.toJson(ignoreunknown);
+		//Ignore Unknown
+		/*
+		 * EmployeeIGNOREUNKNOWN ignoreunknown=new EmployeeIGNOREUNKNOWN();
+		 * ignoreunknown.setAddress("TMP"); ignoreunknown.setName("Shiva");
+		 * ignoreunknown.setDepot("ECE"); String
+		 * toJson=employeeIGNOREUNKNOWNService.toJson(ignoreunknown);
+		 * System.out.println(toJson); String jsonString =
+		 * "{\"name\":\"Trish\",\"phone\":\"111-111-1111\"}"; EmployeeIGNOREUNKNOWN
+		 * toObject=employeeIGNOREUNKNOWNService.toObject(jsonString);
+		 * System.out.println(toObject);
+		 */
+		AddressIGNORETYPE addressIGNORETYPE=new AddressIGNORETYPE();
+		addressIGNORETYPE.setCity("TMP");
+		addressIGNORETYPE.setStreet("Church");
+		EmpIGNORETYPE ignoretype=new EmpIGNORETYPE();
+		ignoretype.setName("Shiva");
+		ignoretype.setDepot("ECE");
+		ignoretype.setIgnoretype(addressIGNORETYPE);
+		String toJson=empIGNORETYPEService.toJson(ignoretype);
 		System.out.println(toJson);
-		String jsonString = "{\"name\":\"Trish\",\"phone\":\"111-111-1111\"}";
-		EmployeeIGNOREUNKNOWN toObject=employeeIGNOREUNKNOWNService.toObject(jsonString);
+		EmpIGNORETYPE toObject=empIGNORETYPEService.toObject(toJson);
 		System.out.println(toObject);
 	}
 

@@ -1,10 +1,6 @@
 package com.demo.modal;
-
-import org.springframework.web.bind.annotation.GetMapping;
-
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 @JsonIgnoreProperties({"roleId"})
@@ -32,5 +28,4 @@ public void setRoleName(String roleName) {
 public String toString() {
 	return "Roles [roleId=" + roleId + ", roleName=" + roleName + "]";
 }
-
 }

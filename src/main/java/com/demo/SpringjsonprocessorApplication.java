@@ -14,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
+import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTY;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTYService;
 import com.demo.JSONSETTERandGETTER.EmployeeSETGET;
@@ -37,6 +39,8 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	private EmployeeSETGETService employeeSETGETService;
 	@Autowired
 	private EmployeeSETGETServiceNull employeeSETGETServiceNull;
+	@Autowired
+	private EmployeeJSONIGNOREService employeeJSONIGNOREService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -126,12 +130,23 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * System.out.println(setget2);
 		 */
 		//Handling null using @JsonSetter
-		EmployeeSETGETNull jsonproperty=new EmployeeSETGETNull();
-		jsonproperty.setName("Shiva");
-		String toJson3=employeeSETGETServiceNull.toJson(jsonproperty);
-		System.out.println(toJson3);
-		EmployeeSETGETNull setgetNull=employeeSETGETServiceNull.toObject(toJson3);
-		System.out.println(setgetNull);
+		/*
+		 * EmployeeSETGETNull jsonproperty=new EmployeeSETGETNull();
+		 * jsonproperty.setName("Shiva"); String
+		 * toJson3=employeeSETGETServiceNull.toJson(jsonproperty);
+		 * System.out.println(toJson3); EmployeeSETGETNull
+		 * setgetNull=employeeSETGETServiceNull.toObject(toJson3);
+		 * System.out.println(setgetNull);
+		 */
+		//@JsonIgnore
+		EmployeeJSONIGNORE jsonignore=new EmployeeJSONIGNORE();
+		jsonignore.setName("Shiva");
+		jsonignore.setDepot("ECE");
+		jsonignore.setAddress("TMP");
+		String toJson=employeeJSONIGNOREService.toJson(jsonignore);
+		System.out.println(toJson);
+		EmployeeJSONIGNORE toObject=employeeJSONIGNOREService.toObject(toJson);
+		System.out.println(toObject);
 	}
 
 }

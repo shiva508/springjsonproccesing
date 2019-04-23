@@ -18,6 +18,8 @@ import com.demo.JSONPROPERTY.EmployeeJSONPROPERTY;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTYService;
 import com.demo.JSONSETTERandGETTER.EmployeeSETGET;
 import com.demo.JSONSETTERandGETTER.EmployeeSETGETService;
+import com.demo.JSONSETTERandGETTER.NULL.EmployeeSETGETNull;
+import com.demo.JSONSETTERandGETTER.NULL.EmployeeSETGETServiceNull;
 import com.demo.form.EmptyObject;
 import com.demo.modal.Roles;
 import com.demo.modal.User;
@@ -33,6 +35,8 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	private EmployeeJSONPROPERTYService jsonpropertyService;
 	@Autowired
 	private EmployeeSETGETService employeeSETGETService;
+	@Autowired
+	private EmployeeSETGETServiceNull employeeSETGETServiceNull;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -104,21 +108,30 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * ; System.out.println(dup); User userTde=om.readValue(dup, User.class);
 		 * System.out.println(userTde);
 		 */
-		
-		  EmployeeJSONPROPERTY jsonproperty=new EmployeeJSONPROPERTY();
-		  jsonproperty.setDepot("Development"); 
-		  jsonproperty.setName("Java");
-		  String jsonOut=jsonpropertyService.toJson(jsonproperty);
-		  System.out.println(jsonOut);
-		  EmployeeJSONPROPERTY objectProperty=jsonpropertyService.toObject(jsonOut);
-		  System.out.println(objectProperty);
-		  EmployeeSETGET setget=new EmployeeSETGET();
-		  setget.setName("Shiva");
-		  setget.setDept("ECE");
-		String jsonOut1=employeeSETGETService.toJson(setget);
-		System.out.println(jsonOut1);
-		EmployeeSETGET setget2=employeeSETGETService.toObject(jsonOut1);
-		System.out.println(setget2);
+		//@JsonProperty
+		/*
+		 * EmployeeJSONPROPERTY jsonproperty=new EmployeeJSONPROPERTY();
+		 * jsonproperty.setDepot("Development"); jsonproperty.setName("Java"); String
+		 * jsonOut=jsonpropertyService.toJson(jsonproperty);
+		 * System.out.println(jsonOut); EmployeeJSONPROPERTY
+		 * objectProperty=jsonpropertyService.toObject(jsonOut);
+		 * System.out.println(objectProperty);
+		 */
+		//@Setter,@Getter
+		/*
+		 * EmployeeSETGET setget=new EmployeeSETGET(); setget.setName("Shiva");
+		 * setget.setDept("ECE"); String jsonOut1=employeeSETGETService.toJson(setget);
+		 * System.out.println(jsonOut1); EmployeeSETGET
+		 * setget2=employeeSETGETService.toObject(jsonOut1);
+		 * System.out.println(setget2);
+		 */
+		//Handling null using @JsonSetter
+		EmployeeSETGETNull jsonproperty=new EmployeeSETGETNull();
+		jsonproperty.setName("Shiva");
+		String toJson3=employeeSETGETServiceNull.toJson(jsonproperty);
+		System.out.println(toJson3);
+		EmployeeSETGETNull setgetNull=employeeSETGETServiceNull.toObject(toJson3);
+		System.out.println(setgetNull);
 	}
 
 }

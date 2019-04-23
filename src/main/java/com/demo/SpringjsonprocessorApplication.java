@@ -14,6 +14,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWN;
+import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWNService;
 import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
 import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
 import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTY;
@@ -35,16 +37,24 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @ComponentScan(basePackages= {"com"})
 @SpringBootApplication
 public class SpringjsonprocessorApplication implements CommandLineRunner {
+	/*
+	 * @Autowired private EmployeeJSONPROPERTYService jsonpropertyService;
+	 */
+	/*
+	 * @Autowired private EmployeeSETGETService employeeSETGETService;
+	 */
+	/*
+	 * @Autowired private EmployeeSETGETServiceNull employeeSETGETServiceNull;
+	 */
+	/*
+	 * @Autowired private EmployeeJSONIGNOREService employeeJSONIGNOREService;
+	 */
+	/*
+	 * @Autowired private EmployeeJSONIGNOREPROPERTYService
+	 * employeeJSONIGNOREPROPERTYService;
+	 */
 	@Autowired
-	private EmployeeJSONPROPERTYService jsonpropertyService;
-	@Autowired
-	private EmployeeSETGETService employeeSETGETService;
-	@Autowired
-	private EmployeeSETGETServiceNull employeeSETGETServiceNull;
-	@Autowired
-	private EmployeeJSONIGNOREService employeeJSONIGNOREService;
-	@Autowired
-	private EmployeeJSONIGNOREPROPERTYService employeeJSONIGNOREPROPERTYService;
+	private EmployeeIGNOREUNKNOWNService employeeIGNOREUNKNOWNService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -153,13 +163,23 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * System.out.println(toObject);
 		 */
 		//@JsonIgnoreProperties
-		EmployeeJSONIGNOREPROPERTY jsonignoreproperty=new EmployeeJSONIGNOREPROPERTY();
-		jsonignoreproperty.setAddress("TMP");
-		jsonignoreproperty.setDepot("ECE");
-		jsonignoreproperty.setName("Shiva");
-		String toJson=employeeJSONIGNOREPROPERTYService.toJson(jsonignoreproperty);
+		/*
+		 * EmployeeJSONIGNOREPROPERTY jsonignoreproperty=new
+		 * EmployeeJSONIGNOREPROPERTY(); jsonignoreproperty.setAddress("TMP");
+		 * jsonignoreproperty.setDepot("ECE"); jsonignoreproperty.setName("Shiva");
+		 * String toJson=employeeJSONIGNOREPROPERTYService.toJson(jsonignoreproperty);
+		 * System.out.println(toJson); EmployeeJSONIGNOREPROPERTY
+		 * toObject=employeeJSONIGNOREPROPERTYService.toObject(toJson);
+		 * System.out.println(toObject);
+		 */
+		EmployeeIGNOREUNKNOWN ignoreunknown=new EmployeeIGNOREUNKNOWN();
+		ignoreunknown.setAddress("TMP");
+		ignoreunknown.setName("Shiva");
+		ignoreunknown.setDepot("ECE");
+		String toJson=employeeIGNOREUNKNOWNService.toJson(ignoreunknown);
 		System.out.println(toJson);
-		EmployeeJSONIGNOREPROPERTY toObject=employeeJSONIGNOREPROPERTYService.toObject(toJson);
+		String jsonString = "{\"name\":\"Trish\",\"phone\":\"111-111-1111\"}";
+		EmployeeIGNOREUNKNOWN toObject=employeeIGNOREUNKNOWNService.toObject(jsonString);
 		System.out.println(toObject);
 	}
 

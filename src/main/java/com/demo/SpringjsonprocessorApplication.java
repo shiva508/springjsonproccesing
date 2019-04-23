@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
 import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
+import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTY;
+import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTYService;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTY;
 import com.demo.JSONPROPERTY.EmployeeJSONPROPERTYService;
 import com.demo.JSONSETTERandGETTER.EmployeeSETGET;
@@ -41,6 +43,8 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	private EmployeeSETGETServiceNull employeeSETGETServiceNull;
 	@Autowired
 	private EmployeeJSONIGNOREService employeeJSONIGNOREService;
+	@Autowired
+	private EmployeeJSONIGNOREPROPERTYService employeeJSONIGNOREPROPERTYService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -139,13 +143,23 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * System.out.println(setgetNull);
 		 */
 		//@JsonIgnore
-		EmployeeJSONIGNORE jsonignore=new EmployeeJSONIGNORE();
-		jsonignore.setName("Shiva");
-		jsonignore.setDepot("ECE");
-		jsonignore.setAddress("TMP");
-		String toJson=employeeJSONIGNOREService.toJson(jsonignore);
+		/*
+		 * EmployeeJSONIGNORE jsonignore=new EmployeeJSONIGNORE();
+		 * jsonignore.setName("Shiva"); jsonignore.setDepot("ECE");
+		 * jsonignore.setAddress("TMP"); String
+		 * toJson=employeeJSONIGNOREService.toJson(jsonignore);
+		 * System.out.println(toJson); EmployeeJSONIGNORE
+		 * toObject=employeeJSONIGNOREService.toObject(toJson);
+		 * System.out.println(toObject);
+		 */
+		//@JsonIgnoreProperties
+		EmployeeJSONIGNOREPROPERTY jsonignoreproperty=new EmployeeJSONIGNOREPROPERTY();
+		jsonignoreproperty.setAddress("TMP");
+		jsonignoreproperty.setDepot("ECE");
+		jsonignoreproperty.setName("Shiva");
+		String toJson=employeeJSONIGNOREPROPERTYService.toJson(jsonignoreproperty);
 		System.out.println(toJson);
-		EmployeeJSONIGNORE toObject=employeeJSONIGNOREService.toObject(toJson);
+		EmployeeJSONIGNOREPROPERTY toObject=employeeJSONIGNOREPROPERTYService.toObject(toJson);
 		System.out.println(toObject);
 	}
 

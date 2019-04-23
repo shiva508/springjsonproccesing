@@ -16,6 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWN;
 import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWNService;
+import com.demo.JACKSONINJECT.CurrencyRate;
+import com.demo.JACKSONINJECT.CurrencyRateJACKSONINJECTService;
 import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
 import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
 import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTY;
@@ -59,8 +61,11 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	/*
 	 * @Autowired private EmployeeIGNOREUNKNOWNService employeeIGNOREUNKNOWNService;
 	 */
+	/*
+	 * @Autowired private EmpIGNORETYPEService empIGNORETYPEService;
+	 */
 	@Autowired
-	private EmpIGNORETYPEService empIGNORETYPEService;
+	private CurrencyRateJACKSONINJECTService currencyRateJACKSONINJECTService;
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -189,17 +194,21 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * toObject=employeeIGNOREUNKNOWNService.toObject(jsonString);
 		 * System.out.println(toObject);
 		 */
-		AddressIGNORETYPE addressIGNORETYPE=new AddressIGNORETYPE();
-		addressIGNORETYPE.setCity("TMP");
-		addressIGNORETYPE.setStreet("Church");
-		EmpIGNORETYPE ignoretype=new EmpIGNORETYPE();
-		ignoretype.setName("Shiva");
-		ignoretype.setDepot("ECE");
-		ignoretype.setIgnoretype(addressIGNORETYPE);
-		String toJson=empIGNORETYPEService.toJson(ignoretype);
-		System.out.println(toJson);
-		EmpIGNORETYPE toObject=empIGNORETYPEService.toObject(toJson);
-		System.out.println(toObject);
+		//@JsonIgnoreType
+		/*
+		 * AddressIGNORETYPE addressIGNORETYPE=new AddressIGNORETYPE();
+		 * addressIGNORETYPE.setCity("TMP"); addressIGNORETYPE.setStreet("Church");
+		 * EmpIGNORETYPE ignoretype=new EmpIGNORETYPE(); ignoretype.setName("Shiva");
+		 * ignoretype.setDepot("ECE"); ignoretype.setIgnoretype(addressIGNORETYPE);
+		 * String toJson=empIGNORETYPEService.toJson(ignoretype);
+		 * System.out.println(toJson); EmpIGNORETYPE
+		 * toObject=empIGNORETYPEService.toObject(toJson); System.out.println(toObject);
+		 * 
+		 */
+		 String s = "{\"pair\":\"USD/JPY\",\"rate\":109.15}";
+		 System.out.println(s);
+		CurrencyRate currencyRate=currencyRateJACKSONINJECTService.toObject(s);
+		System.out.println(currencyRate);
 	}
 
 }

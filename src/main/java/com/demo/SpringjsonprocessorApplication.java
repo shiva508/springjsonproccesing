@@ -18,6 +18,8 @@ import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWN;
 import com.demo.IGNOREUNKNOWN.EmployeeIGNOREUNKNOWNService;
 import com.demo.JACKSONINJECT.CurrencyRate;
 import com.demo.JACKSONINJECT.CurrencyRateJACKSONINJECTService;
+import com.demo.JACKSONPROPERTYORDER.EmpPROPERTYORDER;
+import com.demo.JACKSONPROPERTYORDER.EmpPROPERTYORDERService;
 import com.demo.JSONIGNORE.EmployeeJSONIGNORE;
 import com.demo.JSONIGNORE.EmployeeJSONIGNOREService;
 import com.demo.JSONIGNOREPROPERTY.EmployeeJSONIGNOREPROPERTY;
@@ -34,6 +36,7 @@ import com.demo.JSONSETTERandGETTER.NULL.EmployeeSETGETServiceNull;
 import com.demo.form.EmptyObject;
 import com.demo.modal.Roles;
 import com.demo.modal.User;
+import com.fasterxml.jackson.annotation.JacksonInject;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -64,8 +67,13 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 	/*
 	 * @Autowired private EmpIGNORETYPEService empIGNORETYPEService;
 	 */
+	/*
+	 * @Autowired private CurrencyRateJACKSONINJECTService
+	 * currencyRateJACKSONINJECTService;
+	 */
 	@Autowired
-	private CurrencyRateJACKSONINJECTService currencyRateJACKSONINJECTService;
+	private EmpPROPERTYORDERService empPROPERTYORDERService;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringjsonprocessorApplication.class, args);
 	}
@@ -205,10 +213,22 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * toObject=empIGNORETYPEService.toObject(toJson); System.out.println(toObject);
 		 * 
 		 */
-		 String s = "{\"pair\":\"USD/JPY\",\"rate\":109.15}";
-		 System.out.println(s);
-		CurrencyRate currencyRate=currencyRateJACKSONINJECTService.toObject(s);
-		System.out.println(currencyRate);
+		/* @JacksonInject */
+		/*
+		 * String s = "{\"pair\":\"USD/JPY\",\"rate\":109.15}"; System.out.println(s);
+		 * CurrencyRate currencyRate=currencyRateJACKSONINJECTService.toObject(s);
+		 * System.out.println(currencyRate);
+		 */
+		EmpPROPERTYORDER jsonproperty=new EmpPROPERTYORDER();
+		jsonproperty.setCourse("SS");
+		jsonproperty.setDepot("ECE");
+		jsonproperty.setId(408);
+		jsonproperty.setName("Dasari Shiva");
+		String toJson=empPROPERTYORDERService.toJson(jsonproperty);
+		System.out.println(toJson);
+		EmpPROPERTYORDER toObject=empPROPERTYORDERService.toObject(toJson);
+		System.out.println(toObject);
+		
 	}
 
 }

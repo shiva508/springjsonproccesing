@@ -37,6 +37,7 @@ import com.demo.form.EmptyObject;
 import com.demo.modal.Roles;
 import com.demo.modal.User;
 import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -219,15 +220,16 @@ public class SpringjsonprocessorApplication implements CommandLineRunner {
 		 * CurrencyRate currencyRate=currencyRateJACKSONINJECTService.toObject(s);
 		 * System.out.println(currencyRate);
 		 */
-		EmpPROPERTYORDER jsonproperty=new EmpPROPERTYORDER();
-		jsonproperty.setCourse("SS");
-		jsonproperty.setDepot("ECE");
-		jsonproperty.setId(408);
-		jsonproperty.setName("Dasari Shiva");
-		String toJson=empPROPERTYORDERService.toJson(jsonproperty);
-		System.out.println(toJson);
-		EmpPROPERTYORDER toObject=empPROPERTYORDERService.toObject(toJson);
-		System.out.println(toObject);
+		//@JsonPropertyOrder
+		/*
+		 * EmpPROPERTYORDER jsonproperty=new EmpPROPERTYORDER();
+		 * jsonproperty.setCourse("SS"); jsonproperty.setDepot("ECE");
+		 * jsonproperty.setId(408); jsonproperty.setName("Dasari Shiva"); String
+		 * toJson=empPROPERTYORDERService.toJson(jsonproperty);
+		 * System.out.println(toJson); EmpPROPERTYORDER
+		 * toObject=empPROPERTYORDERService.toObject(toJson);
+		 * System.out.println(toObject);
+		 */
 		
 	}
 
